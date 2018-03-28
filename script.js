@@ -162,23 +162,21 @@ var data = [{
 	"tags": ["trained", "obedient", "kid friendly"]
 }]
 
-var myPets = {};
-myPets.pets = data;
-
 $(function(){
 	var petNames = availablePets(data);
-	$('#pet-name').autocomplete({
-		source:petNames
+	if('#pet-name'){
+			$('#pet-name').autocomplete({
+		source:petNames,
+		select: function (event, ui) {
+            showResults(event, ui)
+        }
 	})
 
-	var input = $("#pet-search")
-	var filter = input.val().toLowerCase();
-	var results = retrieveResults(filter);
-     addSearchResults(results)
+	}
+
 })
 
 function availablePets(data){
-	console.log(data);
 	var pets =[]
 	for(var i=0; i<data.length; i++){
 		pets.push(data[i].name)
@@ -186,8 +184,14 @@ function availablePets(data){
 	return pets
 }
 
+function showResults(event, ui){
+	var selectedPet = ui.item;
+	var petName = (selectedPet.value).toLowerCase()
+	var results = retrieveResults(petName);
+	addSearchResults(results)
+    
 
-
+}
 
 function retrieveResults(filter){
 	var results = []
@@ -200,19 +204,11 @@ function retrieveResults(filter){
 	return results;
 }
 
-
-
 function addSearchResults(results){
-	$('#result-list').css('display', 'block');
+	$('#details').css('display', 'block');
+	var result = document.createElement('p');
+	$(result).attr('id', 'results-list');
+	$(result).html(results)
+	$('#details').append(result)
 
-	var select = document.createElement('select');
-	$(select).attr('id', 'results-list');
-	$('#input').append(select)
-	
-	for(var i=0; i<results.length; i++){
-		var option = document.createElement('option');
-
-		$(option).html(results[i])
-		$('#results-list').append(option)
-	}
 }
