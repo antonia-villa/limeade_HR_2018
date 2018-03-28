@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Limeade HR</title>
+</head>
+
+<body>
+    <section id="instructions">
+        This is an exercise that should let you demonstrate some of your front-end development skills. Please read the steps below and produce a solution that meets the requirements.
+        <p>There are several solutions possible for each part of the problem. </p>
+        <p>Use any CSS or JS libraries that you'd like.</p>
+        <p><strong>Instructions</strong></p>
+        <ul>
+            <li>First, fork this to your own pen so you can work on your own copy.</li>
+            <li>The JavaScript section contains an array of JSON objects, assigned to the variable <strong>data</strong>. Pretend this is the output of an API that you just called that got you a list of pets.</li>
+            <li>The objects contain properties that describes each animal.</li>
+            <li>Your task is to build an interface that lets a user search that list.</li>
+            <li>The HTML below these instructions contains an HTML input and a div with the ID <strong>output.</strong></li>
+            <li>Allow searching without a page refresh or form submit - that is, using only client-side code.</li>
+            <li>As the user is typing, show a results list in a separate UI element. The user should see a list of animals whose name matches the string that's being entered. For example, if a user has typed "Sha", that output would have one result: the animal named "Shadow." The list should update as the user types. You could do this in a stand-alone HTML element. A modern approach to this is an autocomplete output, which you can see by typing in a Google.com search box.</li>
+            <li>Once the user selects an animal from the results list, display detail about the selected pet from that JSON record. Try to display all the properties you see in the JSON.</li>
+            <li>Bonus: In the results list output, show the animal's name and its type (cat/dog).</li>
+            <li>Bonus: Allow filtering by other fields that seem relevant (breed or age, for example).</li>
+            <li>Bonus: Allow searching by a partial string that may match any part of a name, so "dow" would find Shadow.</li>
+            <li>Bonus: Allow sorting the result list</li>
+            <li>You can change anything you like about the HTML and CSS below the instructions.</li>
+            <li>Do not change the input JSON (the variable <strong>data</strong>), since it would be coming from a hypothetical API. You're free to manipulate that data once you've pulled it into the structure of your choice.
+                <li>Send us your finished work!</li>
+        </ul>
+    </section>
+    <hr/>
+    <div id="input">
+        <p>Search for a pet by name:</p>
+        <input type="text" id="pet-search">
+    </div>
+
+    <div id="output" class="hidden">
+        <p>Details about your potential pet:
+            <p>
+                <div id="details">
+                </div>
+    </div>
+
+</body>
+
+</html>
