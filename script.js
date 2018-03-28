@@ -165,3 +165,54 @@ var data = [{
 var myPets = {};
 myPets.pets = data;
 
+$(function(){
+	var petNames = availablePets(data);
+	$('#pet-name').autocomplete({
+		source:petNames
+	})
+
+	var input = $("#pet-search")
+	var filter = input.val().toLowerCase();
+	var results = retrieveResults(filter);
+     addSearchResults(results)
+})
+
+function availablePets(data){
+	console.log(data);
+	var pets =[]
+	for(var i=0; i<data.length; i++){
+		pets.push(data[i].name)
+	}
+	return pets
+}
+
+
+
+
+function retrieveResults(filter){
+	var results = []
+	for(var i=0; i<data.length; i++){
+		var exp = new RegExp((filter.toLowerCase()), 'g');
+	    if((data[i].name.toLowerCase()).match(exp)){
+	      results.push(data[i].name)
+	    }
+	}
+	return results;
+}
+
+
+
+function addSearchResults(results){
+	$('#result-list').css('display', 'block');
+
+	var select = document.createElement('select');
+	$(select).attr('id', 'results-list');
+	$('#input').append(select)
+	
+	for(var i=0; i<results.length; i++){
+		var option = document.createElement('option');
+
+		$(option).html(results[i])
+		$('#results-list').append(option)
+	}
+}
