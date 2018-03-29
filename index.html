@@ -4,7 +4,7 @@
 <head>
     <title>Limeade HR</title>
 </head>
-<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+
 <body>
     <section id="instructions">
         This is an exercise that should let you demonstrate some of your front-end development skills. Please read the steps below and produce a solution that meets the requirements.
@@ -30,20 +30,18 @@
         </ul>
     </section>
     <hr/>
-    
-    <div class="ui-widget">
-  	<label for="tags">Search for pet by name: </label>
-  	<input id="pet-name">
-	</div>
+    <div id="input">
+        <p>Search for a pet by name:</p>
+        <input type="text" id="pet-search" placeholder="Search for pets..">
+    </div>
 
-    <div id="output" class="hidden">
-        <p>Details about your potential pet:
-            <p>
-                <div id="details">
-                </div>
+    <div id="output" >
+    	<h1>Available Pets:</h1>
+	    <div id="details" >
+	    	
+	    </div>
     </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 <script src="script.js"></script>
 </body>
 

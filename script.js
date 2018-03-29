@@ -162,36 +162,35 @@ var data = [{
 	"tags": ["trained", "obedient", "kid friendly"]
 }]
 
-$(function(){
-	var petNames = availablePets(data);
-	if('#pet-name'){
-			$('#pet-name').autocomplete({
-		source:petNames,
-		select: function (event, ui) {
-            showResults(event, ui)
-        }
-	})
+var myPets = {};
+myPets.pets = data;
 
+
+
+
+$('#pet-search').keypress(function() {
+	if($('#results-list')){
+		$('#results-list').remove()
 	}
-
+	var input = $("#pet-search")
+    var filter = input.val().toLowerCase();
+    var results = retrieveResults(filter);
+    addSearchResults(results)
 })
 
-function availablePets(data){
-	var pets =[]
-	for(var i=0; i<data.length; i++){
-		pets.push(data[i].name)
-	}
-	return pets
-}
+// $(function(){
 
-function showResults(event, ui){
-	var selectedPet = ui.item;
-	var petName = (selectedPet.value).toLowerCase()
-	var results = retrieveResults(petName);
-	addSearchResults(results)
-    
 
-}
+// 	$('.petLink').click(function(e){
+// 	e.preventDefault();
+// 	$("#details").css('display', 'block')
+// 	var p = document.createElement('p')
+// 	p.textContent = 'test'
+// 	console.log(event.target.id)
+// 	$('#details').append(p)
+// })
+// })
+
 
 function retrieveResults(filter){
 	var results = []
@@ -204,11 +203,31 @@ function retrieveResults(filter){
 	return results;
 }
 
-function addSearchResults(results){
-	$('#details').css('display', 'block');
-	var result = document.createElement('p');
-	$(result).attr('id', 'results-list');
-	$(result).html(results)
-	$('#details').append(result)
+function showDetails(e){
+	e.preventDefault();
+	var pet = document.createElement('p')
+	pet.textContent = e.target.id
+	$('#details').append(pet)
+	console.log(e.target.id)
+}
 
+function addSearchResults(results){
+	$('#output').css('display', 'block');
+
+	var ul = document.createElement('ul');
+	$(ul).attr('id', 'results-list');
+	$('#output').append(ul)
+	
+	for(var i=0; i<results.length; i++){
+		var li = document.createElement('li');
+		var petName = document.createElement('a')
+
+		petName.textContent = results[i]
+		$(petName).attr('class', 'petLink')
+		$(petName).attr('id', results[i])
+		$(petName).attr("href", "#")
+		$(petName).click(showDetails); 
+		$('#results-list').append(li)
+		$(li).append(petName);
+	}
 }
